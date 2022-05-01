@@ -36,12 +36,8 @@ void loop() {
   }
   else if (SW == 1) {
     Serial.print(" Water Off ");
+  } 
+  else{
+    Serial.print(".");
   }
-  
-//if (SW_state == 0){
-//  Serial.print(" Water On ");
-//}
-//else;{
-//  Serial.print(" Water Off ");  
-//}
 }
