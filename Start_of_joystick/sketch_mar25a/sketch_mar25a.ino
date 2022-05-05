@@ -2,6 +2,16 @@ int VRx = A1;
 int VRy = A0;
 int SW = 8;
 
+int vSpeed = 110; 
+
+const int motorA1      = 9;  
+const int motorA2      = 8; 
+const int motorAspeed  = 6;
+const int motorB1      = 7; 
+const int motorB2      = 8; 
+const int motorBspeed  = 9;
+
+
 int xPosition = 0;
 int yPosition = 0;
 int SW_state = 0;
@@ -10,6 +20,11 @@ int mapY = 0;
 
 void setup() {
   Serial.begin(9600); 
+
+  pinMode(motorA1, OUTPUT);
+  pinMode(motorA2, OUTPUT);
+  pinMode(motorB1, OUTPUT);
+  pinMode(motorB2, OUTPUT);
   
   pinMode(VRx, INPUT);
   pinMode(VRy, INPUT);
@@ -18,6 +33,14 @@ void setup() {
 }
 
 void loop() {
+
+  digitalWrite (motorA1,HIGH);
+  digitalWrite(motorA2,HIGH);                       
+  digitalWrite (motorB1,HIGH);
+  digitalWrite(motorB2,HIGH);
+
+
+  
   xPosition = analogRead(VRx);
   yPosition = analogRead(VRy);
   SW_state = digitalRead(SW);
