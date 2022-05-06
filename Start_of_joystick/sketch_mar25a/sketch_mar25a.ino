@@ -2,7 +2,7 @@ int VRx = A1;
 int VRy = A0;
 int SW = 8;
 
-int vSpeed = 110; 
+int vSpeed = 1; 
 
 const int motorA1      = 9;  
 const int motorA2      = 8; 
@@ -33,14 +33,6 @@ void setup() {
 }
 
 void loop() {
-
-  digitalWrite (motorA1,HIGH);
-  digitalWrite(motorA2,HIGH);                       
-  digitalWrite (motorB1,HIGH);
-  digitalWrite(motorB2,HIGH);
-
-
-  
   xPosition = analogRead(VRx);
   yPosition = analogRead(VRy);
   SW_state = digitalRead(SW);
@@ -53,12 +45,16 @@ void loop() {
   Serial.print(mapY);
   Serial.print(" | Button: ");
   Serial.println(SW_state);
-  delay(1500);
-  if (SW == 0) {
+  
+  if (SW_state == 0) {
     Serial.print(" Water On ");
+  digitalWrite (motorA1,HIGH);
+  digitalWrite (motorB1,HIGH);
   }
-  else if (SW == 1) {
+  else if (SW_state == 1) {
     Serial.print(" Water Off ");
+  digitalWrite (motorA1,LOW);
+  digitalWrite (motorB1,LOW);
   } 
   else{
     Serial.print(".");
