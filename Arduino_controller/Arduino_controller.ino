@@ -49,6 +49,7 @@ int buttonLeft  = 5;
 void setup() {
 
   Serial.begin(9600);
+  Serial.print('xAxis');
   radio.begin();
   radio.openWritingPipe(pipe);
   radio.stopListening();
