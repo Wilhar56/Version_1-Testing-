@@ -2,6 +2,15 @@ int VRx = A1;
 int VRy = A0;
 int SW = 8;
 
+
+const int motorA1      = 7;  
+const int motorA2      = 6; 
+const int motorAspeed  = 9;
+const int motorB1      = 5; 
+const int motorB2      = 4; 
+const int motorBspeed  = 11;
+
+
 int xPosition = 0;
 int yPosition = 0;
 int SW_state = 0;
@@ -9,6 +18,12 @@ int mapX = 0;
 int mapY = 0;
 
 void setup() {
+
+  pinMode(motorA1, OUTPUT);
+  pinMode(motorA2, OUTPUT);
+  pinMode(motorB1, OUTPUT);
+  pinMode(motorB2, OUTPUT);
+  
   Serial.begin(9600); 
   
   pinMode(VRx, INPUT);
@@ -30,11 +45,14 @@ void loop() {
   Serial.print(mapY);
   Serial.print(" | Button: ");
   Serial.println(SW_state);
-  delay(1500);
-  if (SW == 0) {
+  if (SW_state == 0) {
     Serial.print(" Water On ");
+    digitalWrite (motorA1,HIGH);
+    digitalWrite(motorA2,HIGH);                       
+    digitalWrite (motorB1,HIGH);
+    digitalWrite(motorB2,HIGH);
   }
-  else if (SW == 1) {
+  else if (SW_state == 1) {
     Serial.print(" Water Off ");
   } 
   else{

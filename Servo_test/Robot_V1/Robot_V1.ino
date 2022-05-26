@@ -1,28 +1,22 @@
 #include <Servo.h>
- 
-Servo servo_test;                                //initialize a servo object for the connected servo  
-                
-int angle = 0;    
- 
-void setup() 
-{ 
-  Serial.begin(9600);
-  Serial.print("Start");
-  servo_test.attach(9);                         // What pin the servo is attached to digital pwm
-} 
-  
-void loop() 
-{ 
-  for(angle = 0; angle < 180; angle += 1)    
-  {                                  
-    servo_test.write(angle);               
-    Serial.print("1st");      
-  } 
-    delay(200);                                //How long it turns for
-  for(angle = 180; angle>=1; angle-=1)      
-  {                                
-    servo_test.write(angle);              
-    Serial.print("2nd");                        
-  } 
-    delay(200);
+
+Servo myservo;  // create servo object to control a servo
+// twelve servo objects can be created on most boards
+
+int pos = 0;    // variable to store the servo position
+
+void setup() {
+  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
+}
+
+void loop() {
+  for (pos = 0; pos <= 160; pos += 1) { // goes from 0 degrees to 180 degrees
+    // in steps of 1 degree
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
+  for (pos = 160; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+    myservo.write(pos);              // tell servo to go to position in variable 'pos'
+    delay(15);                       // waits 15ms for the servo to reach the position
+  }
 }

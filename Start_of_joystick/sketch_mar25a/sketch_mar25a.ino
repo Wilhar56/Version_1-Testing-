@@ -37,16 +37,33 @@ void loop() {
   Serial.print(" | Button: ");
   Serial.println(SW_state);
   
-  if (SW_state == 0) {
-    Serial.print(" Water On ");
-  digitalWrite (motorA1,HIGH);
-  digitalWrite (motorB1,HIGH);
-  }
-  else if (SW_state == 1) {
-    Serial.print(" Water Off ");
-  digitalWrite (motorA1,LOW);
+//  if (SW_state == 0) {
+//    Serial.print(" Water On ");
+// // digitalWrite (motorA1,HIGH);
+//  digitalWrite (motorB1,HIGH);
+//  }
+//  else if (SW_state == 1) {
+//    Serial.print(" Water Off ");
+//  //digitalWrite (motorA1,LOW);
+//  digitalWrite (motorB1,LOW);
+//  } 
+
+
+
+  if ( mapX >-400 , mapY >-350) {
+    Serial.print(" Foward ");
   digitalWrite (motorB1,LOW);
+  }
+  else if (mapX >400 , mapY <150) {
+    Serial.print(" Reverse ");
+  digitalWrite (motorB1,HIGH);
   } 
+
+
+
+
+
+  
   else{
     Serial.print(".");
   }
