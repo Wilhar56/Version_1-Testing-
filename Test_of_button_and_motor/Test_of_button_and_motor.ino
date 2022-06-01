@@ -45,12 +45,9 @@ void loop() {
   Serial.print(mapY);
   Serial.print(" | Button: ");
   Serial.println(SW_state);
+  
   if (SW_state == 0) {
     Serial.print(" Water On ");
-    digitalWrite (motorA1,HIGH);
-    digitalWrite(motorA2,HIGH);                       
-    digitalWrite (motorB1,HIGH);
-    digitalWrite(motorB2,HIGH);
   }
   else if (SW_state == 1) {
     Serial.print(" Water Off ");

@@ -5,6 +5,7 @@ int SW = 8;
 int vSpeed = 1; 
 
 const int motorB1      = 7; 
+const int motorB2      = 6; 
 
 int xPosition = 0;
 int yPosition = 0;
@@ -16,6 +17,7 @@ void setup() {
   Serial.begin(9600); 
   
   pinMode(motorB1, OUTPUT);
+  pinMode(motorB2, OUTPUT);
   
   pinMode(VRx, INPUT);
   pinMode(VRy, INPUT);
@@ -36,35 +38,25 @@ void loop() {
   Serial.print(mapY);
   Serial.print(" | Button: ");
   Serial.println(SW_state);
-  
-//  if (SW_state == 0) {
-//    Serial.print(" Water On ");
-// // digitalWrite (motorA1,HIGH);
-//  digitalWrite (motorB1,HIGH);
-//  }
-//  else if (SW_state == 1) {
-//    Serial.print(" Water Off ");
-//  //digitalWrite (motorA1,LOW);
-//  digitalWrite (motorB1,LOW);
-//  } 
 
-
-
-  if ( mapX >-400 , mapY >-350) {
-    Serial.print(" Foward ");
+  if ( mapY >-10) {
   digitalWrite (motorB1,LOW);
+  digitalWrite (motorB2,LOW);
   }
-  else if (mapX >400 , mapY <150) {
-    Serial.print(" Reverse ");
+  else if (mapX >= -400) {
   digitalWrite (motorB1,HIGH);
   } 
-
-
-
-
-
   
-  else{
-    Serial.print(".");
+  else if (mapX >= 500) {
+    Serial.print(" Reverse ");
+  digitalWrite (motorB2,HIGH);
+  } 
+
+  else if (SW_state = 0) {
+    Serial.print(" Water On ");
   }
+  else if (SW_state ==1) {
+    Serial.print(" Water Off ");
+  } 
+
 }
