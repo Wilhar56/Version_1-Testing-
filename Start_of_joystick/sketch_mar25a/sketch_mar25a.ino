@@ -28,8 +28,7 @@ void setup() {
   pinMode(SW, INPUT_PULLUP); 
 }
 
-void loop() {
-  xPosition = analogRead(VRx);
+void loop() {  xPosition = analogRead(VRx);
   yPosition = analogRead(VRy);
   SW_state = digitalRead(SW);
   mapX = map(xPosition, 0, 1023, -512, 512);
@@ -42,9 +41,12 @@ void loop() {
   Serial.print(" | Button: ");
   Serial.println(SW_state);
 
-  if ( mapY >-10) {
+  if ( 0 < mapX <-10 ) {
+  Serial.print(" off ");
   digitalWrite (motorB1,LOW);
   digitalWrite (motorB2,LOW);
+  digitalWrite (motorA1,LOW);
+  digitalWrite (motorA2,LOW);
   }
   else if (mapX >= -400) {
     Serial.print(" Forward ");
