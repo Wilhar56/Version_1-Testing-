@@ -1,7 +1,7 @@
 #include <Servo.h>
 Servo myservo;
 
-#define F_Sensor 2 //Flame sensor
+//#define F_Sensor 2 //Flame sensor
 
 int VRx = A1;
 int VRy = A0;
@@ -9,10 +9,10 @@ int SW = 8;
 
 int vSpeed = 1; 
 
-const int motorB1      = 7; 
-const int motorB2      = 6; 
-const int motorA1      = 5; 
-const int motorA2      = 4; 
+const int motorB1      = 12; 
+const int motorB2      = 11; 
+const int motorA1      = 10; 
+const int motorA2      = 9; 
 
 int xPosition = 0;
 int yPosition = 0;
@@ -23,13 +23,13 @@ int mapY = 0;
 int pos = 0;
 
 void setup() {
-
-  myservo.attach(13);
+  
+  pinMode(7, OUTPUT); // Set pin 7 to output
   
   Serial.begin(9600); 
 
-  pinMode(F_Sensor, INPUT);
-  
+//  pinMode(F_Sensor, INPUT);
+
   pinMode(motorB1, OUTPUT);
   pinMode(motorB2, OUTPUT);
   pinMode(motorA1, OUTPUT);
@@ -42,7 +42,7 @@ void setup() {
 
 void loop() {  
 
-  int fire = digitalRead(F_Sensor);
+//  int fire = digitalRead(F_Sensor);
   
   xPosition = analogRead(VRx);
   yPosition = analogRead(VRy);
@@ -100,25 +100,26 @@ void loop() {
   } 
 
   if (SW_state == 0) {
-    Serial.print(" Water On ");
-    myservo.attach(13);
-    for (pos = 0; pos <= 160; pos += 1) { 
-    myservo.write(pos);   
+    digitalWrite(7, HIGH); // Set pin 7 as "high" or turn it on
+    Serial.println("Should be on"); // prints that the pump should be on
+
   }
-  }
+
   if (SW_state == 1) {
+    digitalWrite(7, LOW); // Set pin 7 as "low" or turn it off
+    Serial.println("Should be off"); // prints that the pump
     Serial.print(" Water Off ");
-    myservo.detach();
+  }
 }
 
 
-  if( fire == HIGH)
-  {
-    Serial.println("Fire Detected");
-  }
-  
-  if( fire == LOW)
-  {
-    Serial.println("Peace");
-  }
-}
+//  if( fire == HIGH)
+//  {
+//    Serial.println("Fire Detected");
+//  }
+//  
+//  if( fire == LOW)
+//  {
+//    Serial.println("Peace");
+//  }
+//}
